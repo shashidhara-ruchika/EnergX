@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { Calendar } from './Calendar';
 import { ActivitySuggestions } from './ActivitySuggestions';
 import { SleepTime } from './SleepTime';
+import { MoodTrendChart } from './MoodTrendChart';
 import { supabase } from '@/lib/supabase';
 import { MoodWithActivities } from '@/types/mood';
 import { Button } from '../ui/button';
@@ -50,7 +51,7 @@ export function Dashboard() {
   return (
     <div className="container mx-auto p-4 max-w-4xl">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">EnergX</h1>
+        <h1 className="text-2xl font-bold">Mood Tracker</h1>
         <Button
           onClick={() => supabase.auth.signOut()}
           variant="outline"
@@ -73,6 +74,7 @@ export function Dashboard() {
             <h3 className="text-lg font-semibold mb-2">Selected Date</h3>
             <p>{format(selectedDate, 'MMMM d, yyyy')}</p>
           </div>
+          <MoodTrendChart />
           <ActivitySuggestions />
         </div>
       </div>
