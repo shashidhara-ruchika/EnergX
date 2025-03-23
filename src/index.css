@@ -4,65 +4,35 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 270 25% 98%;
+    --foreground: 270 52% 30%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 270 52% 30%;
  
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 270 52% 30%;
  
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 270 47% 50%;
+    --primary-foreground: 0 0% 100%;
  
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 270 30% 95%;
+    --secondary-foreground: 270 52% 30%;
  
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 270 30% 95%;
+    --muted-foreground: 270 25% 40%;
  
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 270 35% 90%;
+    --accent-foreground: 270 52% 30%;
  
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 270 25% 75%;
+    --input: 270 25% 75%;
+    --ring: 270 47% 50%;
  
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --radius: 1rem;
   }
 }
  
@@ -71,25 +41,73 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-[#9E72C3] to-[#7338A0] min-h-screen;
   }
+}
+
+/* Custom gradients */
+.gradient-primary {
+  @apply bg-gradient-to-r from-[#9E72C3] to-[#7338A0];
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-br from-white via-[#9E72C3]/10 to-[#9E72C3]/20;
+}
+
+.gradient-border {
+  @apply border border-[#924DBF]/20;
+}
+
+/* Card styles */
+.card-gradient {
+  @apply gradient-secondary rounded-2xl shadow-lg gradient-border;
+}
+
+/* Button styles */
+.button-gradient {
+  @apply gradient-primary text-white shadow-md hover:shadow-lg transition-shadow;
+}
+
+/* Navigation styles */
+.nav-gradient {
+  @apply gradient-primary shadow-lg;
 }
 
 /* Add styles for react-day-picker */
 .rdp {
   --rdp-cell-size: 40px;
-  --rdp-accent-color: hsl(var(--primary));
-  --rdp-background-color: hsl(var(--primary) / 0.1);
-  --rdp-accent-color-dark: hsl(var(--primary));
-  --rdp-background-color-dark: hsl(var(--primary) / 0.2);
-  --rdp-outline: 2px solid var(--rdp-accent-color);
-  --rdp-outline-selected: 2px solid var(--rdp-accent-color);
+  --rdp-accent-color: #924DBF;
+  --rdp-background-color: #9E72C3;
+  --rdp-accent-color-dark: #7338A0;
+  --rdp-background-color-dark: #4A2574;
+  --rdp-outline: 2px solid #924DBF;
+  --rdp-outline-selected: 2px solid #7338A0;
   margin: 0;
 }
 
 .rdp-day_selected, 
 .rdp-day_selected:focus-visible, 
 .rdp-day_selected:hover {
-  background-color: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
+  background-color: #924DBF !important;
+  color: white !important;
+}
+
+.rdp-day:hover:not(.rdp-day_selected) {
+  background-color: #9E72C3 !important;
+  color: white !important;
+}
+
+/* Chart customization */
+.recharts-default-tooltip {
+  @apply !bg-white/90 !border-[#924DBF] !rounded-xl !shadow-lg !p-3;
+}
+
+/* Custom shadows */
+.shadow-custom {
+  box-shadow: 0 4px 20px -5px rgba(115, 56, 160, 0.2);
+}
+
+/* Custom transitions */
+.transition-custom {
+  @apply transition-all duration-300 ease-in-out;
 }

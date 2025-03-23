@@ -104,7 +104,7 @@ export function Journal() {
         <div className="grid gap-6">
           <div className="p-4 bg-white rounded-lg shadow-md">
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">How are you feeling today?</h3>
+              {/* <h3 className="text-lg font-semibold mb-2">How are you feeling today?</h3> */}
               <MoodSelector
                 onMoodSelect={handleMoodSelect}
                 currentMood={entry?.mood as Mood}
