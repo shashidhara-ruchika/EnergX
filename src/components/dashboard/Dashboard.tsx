@@ -49,7 +49,7 @@ export function Dashboard() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar />
       <div className="container mx-auto p-4 max-w-4xl">
         <div className="grid gap-6">
@@ -62,9 +62,9 @@ export function Dashboard() {
             <SleepTime />
           </div>
           <div className="space-y-6">
-            <div className="p-4 bg-white rounded-lg shadow-md">
-              <h3 className="text-lg font-semibold mb-2">Selected Date</h3>
-              <p>{format(selectedDate, 'MMMM d, yyyy')}</p>
+            <div className="card-gradient p-4 rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold mb-2 text-purple-900">Selected Date</h3>
+              <p className="text-purple-800">{format(selectedDate, 'MMMM d, yyyy')}</p>
             </div>
             <MoodTrendChart />
             <ActivitySuggestions />

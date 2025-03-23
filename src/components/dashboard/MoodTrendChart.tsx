@@ -64,10 +64,10 @@ export function MoodTrendChart() {
 
   if (loading) {
     return (
-      <div className="p-6 bg-white rounded-lg shadow-md">
+      <div className="card-gradient p-8 rounded-2xl">
         <div className="animate-pulse">
-          <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-          <div className="h-64 bg-gray-100 rounded"></div>
+          <div className="h-4 bg-[#9E72C3]/20 rounded-full w-3/4 mb-4"></div>
+          <div className="h-64 bg-[#9E72C3]/10 rounded-xl"></div>
         </div>
       </div>
     );
@@ -77,9 +77,9 @@ export function MoodTrendChart() {
   const worstMood = [...moodData].sort((a, b) => a.score - b.score)[0];
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h3 className="text-lg font-semibold mb-2">Mood Activity Trend</h3>
-      <p className="text-sm text-gray-500 mb-6">
+    <div className="card-gradient p-8 rounded-2xl">
+      <h3 className="text-xl font-semibold mb-2 text-[#4A2574]">Mood Activity Trend</h3>
+      <p className="text-sm text-[#7338A0] mb-8">
         Track your emotional journey and see how your activities influence your mood
       </p>
       
@@ -89,10 +89,10 @@ export function MoodTrendChart() {
             data={moodData}
             margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#9E72C3/20" />
             <XAxis
               dataKey="date"
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 12, fill: '#4A2574' }}
               tickMargin={10}
             />
             <YAxis
@@ -115,8 +115,8 @@ export function MoodTrendChart() {
                 if (active && payload && payload.length) {
                   const data = payload[0].payload;
                   return (
-                    <div className="bg-white p-2 shadow-lg rounded-lg border">
-                      <p className="text-sm font-medium">{data.date}</p>
+                    <div className="bg-white/95 p-3 shadow-lg rounded-xl border border-[#924DBF]/20">
+                      <p className="text-sm font-medium text-[#4A2574]">{data.date}</p>
                       <p className="text-lg">{data.mood}</p>
                     </div>
                   );
@@ -127,18 +127,19 @@ export function MoodTrendChart() {
             <Line
               type="monotone"
               dataKey="score"
-              stroke="#6366f1"
-              strokeWidth={2}
-              dot={{ r: 4, fill: "#6366f1" }}
-              activeDot={{ r: 6 }}
+              stroke="#924DBF"
+              strokeWidth={2.5}
+              dot={{ r: 4, fill: "#7338A0", strokeWidth: 2, stroke: "#924DBF" }}
+              activeDot={{ r: 6, fill: "#4A2574" }}
             />
             {bestMood && (
               <ReferenceDot
                 x={bestMood.date}
                 y={bestMood.score}
                 r={6}
-                fill="#22c55e"
-                stroke="none"
+                fill="#7338A0"
+                stroke="#924DBF"
+                strokeWidth={2}
               />
             )}
             {worstMood && (
@@ -146,22 +147,23 @@ export function MoodTrendChart() {
                 x={worstMood.date}
                 y={worstMood.score}
                 r={6}
-                fill="#ef4444"
-                stroke="none"
+                fill="#9E72C3"
+                stroke="#924DBF"
+                strokeWidth={2}
               />
             )}
           </LineChart>
         </ResponsiveContainer>
       </div>
 
-      <div className="flex justify-center gap-6 mt-4 text-sm">
+      <div className="flex justify-center gap-8 mt-6 text-sm">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#22c55e]"></div>
-          <span>Best Mood</span>
+          <div className="w-3 h-3 rounded-full bg-[#7338A0]"></div>
+          <span className="text-[#4A2574]">Best Mood</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#ef4444]"></div>
-          <span>Lowest Mood</span>
+          <div className="w-3 h-3 rounded-full bg-[#9E72C3]"></div>
+          <span className="text-[#4A2574]">Lowest Mood</span>
         </div>
       </div>
     </div>
