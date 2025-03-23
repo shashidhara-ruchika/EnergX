@@ -16,7 +16,7 @@ const moodEmojis: Record<Mood, string> = {
   '😐': '😐',
   '🙁': '🙁',
   '😢': '😢',
-  '🤷': '🤷',
+  '🤷': '',
 };
 
 export function Calendar({ moodEntries, onSelectDate, selectedDate }: CalendarProps) {
@@ -44,18 +44,25 @@ export function Calendar({ moodEntries, onSelectDate, selectedDate }: CalendarPr
           selected: 'bg-primary text-primary-foreground',
         }}
         components={{
-          DayContent: ({ date }) => (
-            <div className="flex flex-col items-center">
-              <span>{date.getDate()}</span>
-              <span className="text-lg">{moodEmojis[getMoodForDate(date)]}</span>
-            </div>
-          ),
+          DayContent: ({ date }) => {
+            const mood = getMoodForDate(date);
+            return (
+              <div className="flex items-center justify-center w-10 h-10">
+                {moodEmojis[mood] || format(date, 'd')}
+              </div>
+            );
+          },
         }}
         className={cn(
-          'p-3',
+          'mx-auto',
           'rdp-day_selected:bg-primary rdp-day_selected:text-primary-foreground',
           'rdp-day_today:bg-accent rdp-day_today:text-accent-foreground'
         )}
+        styles={{
+          table: { width: '100%' },
+          cell: { width: '40px', height: '40px' },
+          day: { margin: 0 }
+        }}
       />
     </div>
   );
