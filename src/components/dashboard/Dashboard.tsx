@@ -79,7 +79,7 @@ export function Dashboard() {
   return (
     <div className="container mx-auto p-4 max-w-4xl">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Mood Tracker</h1>
+        <h1 className="text-2xl font-bold">EnergX</h1>
         <Button
           onClick={() => supabase.auth.signOut()}
           variant="outline"
