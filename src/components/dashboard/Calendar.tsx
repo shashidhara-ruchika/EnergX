@@ -42,12 +42,20 @@ export function Calendar({ moodEntries, onSelectDate, selectedDate }: CalendarPr
         }}
         modifiersClassNames={{
           selected: 'bg-primary text-primary-foreground',
+          today: 'bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground cursor-pointer',
         }}
         components={{
-          DayContent: ({ date }) => {
+          DayContent: ({ date, activeModifiers }) => {
             const mood = getMoodForDate(date);
             return (
-              <div className="flex items-center justify-center w-10 h-10">
+              <div 
+                className={cn(
+                  "flex items-center justify-center w-10 h-10",
+                  "cursor-pointer hover:bg-primary hover:text-primary-foreground rounded-md transition-colors",
+                  activeModifiers.selected && "bg-primary text-primary-foreground"
+                )}
+                onClick={() => onSelectDate(date)}
+              >
                 {moodEmojis[mood] || format(date, 'd')}
               </div>
             );
