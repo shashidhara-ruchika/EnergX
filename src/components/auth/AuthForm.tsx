@@ -45,9 +45,11 @@ export function AuthForm() {
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6 text-center">
+            <h1 className="text-2xl font-bold text-center">🔥 EnergX</h1>
+      {/* <h4 className="text-2xl font-bold mb-6 text-center">
         {isLogin ? 'Login' : 'Sign Up'}
-      </h2>
+      </h4>
+        */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Email</label>

@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { supabase } from '@/lib/supabase';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { parse } from 'date-fns';
+import { Mic, Square } from 'lucide-react';
 
 const activitySchema = z.object({
   start_time: z.string(),
@@ -127,8 +128,10 @@ export function ActivityForm({ moodEntryId, date, onActivityAdded }: ActivityFor
             type="button"
             onClick={isListening ? stopListening : startListening}
             variant={isListening ? "destructive" : "outline"}
+            size="icon"
+            className="w-10 h-10 rounded-full flex items-center justify-center"
           >
-            {isListening ? '🛑 Stop' : '🎤 Record'}
+            {isListening ? <Square className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
           </Button>
         </div>
       </div>
