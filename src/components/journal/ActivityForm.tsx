@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/lib/supabase';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { parse, format } from 'date-fns';
+import { parse } from 'date-fns';
 
 const activitySchema = z.object({
   start_time: z.string(),
@@ -20,10 +20,11 @@ type ActivityFormData = z.infer<typeof activitySchema>;
 
 interface ActivityFormProps {
   moodEntryId: string;
+  date: string;
   onActivityAdded: () => void;
 }
 
-export function ActivityForm({ moodEntryId, onActivityAdded }: ActivityFormProps) {
+export function ActivityForm({ moodEntryId, date, onActivityAdded }: ActivityFormProps) {
   const [isListening, setIsListening] = useState(false);
   const { transcript, resetTranscript } = useSpeechRecognition();
 
@@ -59,16 +60,23 @@ export function ActivityForm({ moodEntryId, onActivityAdded }: ActivityFormProps
 
   const onSubmit = async (data: ActivityFormData) => {
     try {
-      // Convert time strings to full timestamps
-      const today = new Date();
-      const [startHours, startMinutes] = data.start_time.split(':');
-      const [endHours, endMinutes] = data.end_time.split(':');
+      // Parse the selected date
+      const selectedDate = parse(date, 'yyyy-MM-dd', new Date());
       
-      const startTime = new Date(today);
+      // Set hours and minutes for start time
+      const [startHours, startMinutes] = data.start_time.split(':');
+      const startTime = new Date(selectedDate);
       startTime.setHours(parseInt(startHours, 10), parseInt(startMinutes, 10), 0, 0);
       
-      const endTime = new Date(today);
+      // Set hours and minutes for end time
+      const [endHours, endMinutes] = data.end_time.split(':');
+      const endTime = new Date(selectedDate);
       endTime.setHours(parseInt(endHours, 10), parseInt(endMinutes, 10), 0, 0);
+
+      // If end time is before start time, it means the activity ends the next day
+      if (endTime < startTime) {
+        endTime.setDate(endTime.getDate() + 1);
+      }
 
       const { error } = await supabase.from('activities').insert({
         mood_entry_id: moodEntryId,
