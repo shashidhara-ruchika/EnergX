@@ -1,12 +1,18 @@
-# Project 2
+# EnergX
 
 ## Description
-Project 2 is a web application that leverages Supabase for backend services and Hugging Face AI for AI-powered features. The application is designed to provide users with a seamless experience by integrating powerful APIs and services.
+EnergX is a web application that leverages Supabase for backend services and Hugging Face AI for AI-powered features. The application is designed to provide users with a seamless experience by integrating powerful APIs and services.
 
 ## Features
 - User authentication and management using Supabase.
 - AI-powered functionalities using Hugging Face's API.
 - Responsive and user-friendly interface.
+
+
+
+https://github.com/user-attachments/assets/c9a5e52f-128c-4465-9a9e-ed10eeaaa1af
+
+
 
 ## Getting Started
 
